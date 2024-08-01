@@ -1,7 +1,7 @@
 # Gerenciador de materiais de contrução
 
 
-Este software foi desenvolvido para facilitar a administração e o controle de materiais de construção em projetos de obras. Com uma interface intuitiva e funcionalidades robustas, o sistema atende às necessidades de operários, administradores, empresas e responsáveis por obras, oferecendo uma solução completa para o gerenciamento eficiente dos materiais e recursos.
+Este sistema foi desenvolvido para facilitar a administração e o controle de materiais de construção em projetos de obras. Com uma interface intuitiva e funcionalidades robustas, o sistema atende às necessidades de operários, administradores, empresas e responsáveis por obras, oferecendo uma solução completa para o gerenciamento eficiente dos materiais e recursos.
 
 
  Funcionalidades
