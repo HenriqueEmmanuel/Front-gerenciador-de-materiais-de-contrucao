@@ -22,3 +22,4 @@ Gestão de Fornecedores: Mantenha um banco de dados de fornecedores de materiais
 Planejamento e Acompanhamento: Planeje e monitore o progresso das obras, incluindo a alocação de materiais.
 Solicitação de Materiais: Solicite novos materiais e faça ajustes conforme necessário.
 Registro de Materiais: Adicione e atualize informações sobre os materiais utilizados nas obras.
+ss
