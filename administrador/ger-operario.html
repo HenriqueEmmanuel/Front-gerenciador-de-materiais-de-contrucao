@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Administração</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        button {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="workerSection">
+            <h2>Lista de Operários em Campo</h2>
+            <ul id="workerList"></ul>
+            <h3>Adicionar Operário em Campo</h3>
+            <form id="addWorkerForm">
+                <label for="workerName">Nome:</label>
+                <input type="text" id="workerName" required>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            let administrators = [
+                { name: "Admin 1", email: "admin1@example.com" },
+                { name: "Admin 2", email: "admin2@example.com" }
+            ];
+
+            let workers = [
+                { name: "Operário 1" },
+                { name: "Operário 2" }
+            ];
+
+            let supervisors = [
+                { name: "Responsável 1", phone: "123-456-7890" },
+                { name: "Responsável 2", phone: "987-654-3210" }
+            ];
+
+            let materials = [
+                { name: "Cimento", quantity: 100, price: 50 },
+                { name: "Tijolos", quantity: 5000, price: 0.1 }
+            ];
+
+            let companies = [
+                { name: "Empresa A", contact: "empresaA@example.com" },
+                { name: "Empresa B", contact: "empresaB@example.com" }
+            ];
+
+            let projects = [
+                { name: "Projeto 1", address: "Endereço 1", start_date: "2024-04-01", end_date: "2024-04-30" },
+                { name: "Projeto 2", address: "Endereço 2", start_date: "2024-05-01", end_date: "2024-05-31" }
+            ];
+
+        
+            let quotationResponses = [];
+
+            
+            function displayList(list, ulId) {
+                const ul = document.getElementById(ulId);
+                ul.innerHTML = "";
+                list.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = JSON.stringify(item);
+                    ul.appendChild(li);
+                });
+            }
+
+            
+            function addItem(event, list, ulId) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const newItem = {};
+                formData.forEach((value, key) => {
+                    newItem[key] = value;
+                });
+                list.push(newItem);
+                displayList(list, ulId);
+                event.target.reset();
+            }
+
+            
+            document.getElementById("addAdminForm").addEventListener("submit", function(event) {
+                addItem(event, administrators, "adminList");
+            });
+
+            document.getElementById("addWorkerForm").addEventListener("submit", function(event) {
+                addItem(event, workers, "workerList");
+            });
+
+            document.getElementById("addSupervisorForm").addEventListener("submit", function(event) {
+                addItem(event, supervisors, "supervisorList");
+            });
+
+            document.getElementById("addMaterialForm").addEventListener("submit", function(event) {
+                addItem(event, materials, "materialList");
+            });
+
+            document.getElementById("addCompanyForm").addEventListener("submit", function(event) {
+                addItem(event, companies, "companyList");
+            });
+
+            document.getElementById("addProjectForm").addEventListener("submit", function(event) {
+                addItem(event, projects, "projectList");
+            });
+
+            
+            document.getElementById("quotationForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const quotationRequest = {};
+                formData.forEach((value, key) => {
+                    quotationRequest[key] = value;
+                });
+                sendQuotationRequest(quotationRequest);
+                event.target.reset();
+            });
+
+        
+            function sendQuotationRequest(quotationRequest) {
+                
+                quotationResponses.push(quotationRequest);
+                displayList(quotationResponses, "quotationResponseList");
+            }
+
+           
+            displayList(administrators, "adminList");
+            displayList(workers, "workerList");
+            displayList(supervisors, "supervisorList");
+            displayList(materials, "materialList");
+            displayList(companies, "companyList");
+            displayList(projects, "projectList");
+        });
+    </script>
+</body>
+</html>
